@@ -12,8 +12,7 @@ import net.supervision.billingservice.model.Product;
 @AllArgsConstructor
 @Builder
 public class ProductItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String productId;
     @ManyToOne
@@ -21,6 +20,9 @@ public class ProductItem {
     private Bill bill;
     private int quantity;
     private double unitPrice;
-    @Transient
-    private Product product;
+    @Transient private Product product;
+
+    public double getAmount() {
+        return unitPrice*quantity;
+    }
 }
